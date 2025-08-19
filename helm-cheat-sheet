@@ -1,0 +1,50 @@
+helm dependency update 
+Named templates in helper.tpl , define all are called named templates 
+
+helm test -- tests folder/yaml 
+
+Helm Builtin objects: 
+======================
+Root object: . 
+Release 
+Value 
+Chart 
+Capabilities 
+Template 
+File 
+
+
+in Range / With . is current context , not root object 
+
+
+Capabilities is about versions, Helm , K8S 
+
+Template object is for that file: Notes.txt, Deployment.yaml , Service.yaml , ... for that template 
+
+Othre than k8s deployment, we can access other files using files object 
+
+
+Helm Development 
+================
+{{Template Action}}
+In between template action called Action element
+.Chart.Name 
+.Release.Name 
+
+Default function 
+
+With: scope of variables 
+========================
+    {{- with .Values.templateAnnoation }}
+      labels:
+        app: nginx
+        {{- toYaml . | nindent 8}}
+    {{- end }}
+
+How to access Root in with 
+    {{- with .Values.templateAnnoation }}
+      labels:
+        app: nginx
+        {{- toYaml . | nindent 8}}
+        appManagedby: {{ $.Release.Service }}
+    {{- end }}
