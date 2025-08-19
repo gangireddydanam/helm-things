@@ -1,0 +1,22 @@
+Capabilities(version, helm, k8s), Chart, File, Values, Release , Template(filename,filepath)
+{{/*This is comment-Root object */}}
+Root Oject: {{ . }}
+Release Name : {{ .Release.Name }}
+Release NameSpace : {{ .Release.Namespace }}
+Release IsUpgrade : {{ .Release.IsUpgrade }}
+Release IsInstall : {{ .Release.IsInstall }}
+Release Revision : {{ .Release.Revision }}
+Release Service : {{ .Release.Service }}
+
+{{/*Chart Object*/}}
+Chart Name : {{ .Chart.Name }}
+Chart Version : {{ .Chart.Version }}
+Chart AppVersion : {{ .Chart.AppVersion }}
+Chart Type : {{ .Chart.Type }}
+Chart Name and Version : {{ .Chart.Name }}-{{ .Chart.Version }}
+
+
+{{/*File Object*/}}
+File Get : {{ .Files.Get "myconfig.toml"}}
+File Glob as Config : {{ (.Files.Glob "config/*").AsConfig }}
+File Glob as Secret : {{ (.Files.Glob "config/*").AsSecrets }}
